@@ -19,7 +19,7 @@ spec:
         - name: scheduler
           image: location0717/start-limit-scheduler:v1.32.0
           command:
-            - kube-scheduler
+            - /kube-scheduler
             - --config=/etc/kubernetes/scheduler/custom-scheduler-config.yaml
             - --v=2
           volumeMounts:
