@@ -6,7 +6,7 @@ import (
 
     v1 "k8s.io/api/core/v1"
     "k8s.io/apimachinery/pkg/runtime"
-    framework "k8s.io/kubernetes/pkg/scheduler/framework"
+    "k8s.io/kubernetes/pkg/scheduler/framework"
     clientset "k8s.io/client-go/kubernetes"
 )
 
@@ -15,7 +15,6 @@ const (
 )
 
 type PodStartupLimiter struct {
-    handle          framework.Handle
     client          clientset.Interface
     maxStartingPods int
 }
@@ -30,13 +29,10 @@ func (pl *PodStartupLimiter) Name() string {
     return Name
 }
 
-func New(obj runtime.Object, handle framework.Handle) (framework.Plugin, error) {
-    args := obj.(*Args)
-
+func New(ctx context.Context, obj runtime.Object, handle framework.Handle) (framework.Plugin, error) {
     return &PodStartupLimiter{
-        handle:          handle,
-        client:          handle.ClientSet(),
-        maxStartingPods: args.MaxStartingPods,
+        client: handle.ClientSet(),
+        maxStartingPods: 3,
     }, nil
 }
 
