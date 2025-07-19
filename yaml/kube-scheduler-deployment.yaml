@@ -41,6 +41,11 @@ data:
     kind: KubeSchedulerConfiguration
     profiles:
       - schedulerName: custom-scheduler
+        plugins:
+          filter:
+            enabled:
+            - name: PodStartupLimiter
+
 ---
 apiVersion: v1
 kind: ServiceAccount
