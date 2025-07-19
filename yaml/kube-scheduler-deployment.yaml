@@ -17,7 +17,7 @@ spec:
       serviceAccountName: custom-scheduler
       containers:
         - name: scheduler
-          image: location0717/start-limit-scheduler:v1.32.0
+          image: location0717/start-limit-scheduler:v1.32
           env:
             - name: maxStartingPods
               value: "2"
