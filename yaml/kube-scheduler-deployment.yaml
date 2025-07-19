@@ -22,6 +22,7 @@ spec:
             - /kube-scheduler
             - --config=/etc/kubernetes/scheduler/custom-scheduler-config.yaml
             - --leader-elect=true
+            - --leader-elect-resource-name=custom-scheduler
             - --v=2
           volumeMounts:
             - name: config
