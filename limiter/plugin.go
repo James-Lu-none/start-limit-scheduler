@@ -57,3 +57,12 @@ func (pl *PodStartupLimiter) Filter(ctx context.Context, state *framework.CycleS
 
     return framework.NewStatus(framework.Success, "")
 }
+
+func isPodReady(pod *v1.Pod) bool {
+    for _, cond := range pod.Status.Conditions {
+        if cond.Type == v1.PodReady && cond.Status == v1.ConditionTrue {
+            return true
+        }
+    }
+    return false
+}
