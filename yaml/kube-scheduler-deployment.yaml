@@ -20,7 +20,7 @@ spec:
           image: location0717/start-limit-scheduler:v1.32.0
           env:
             - name: maxStartingPods
-              value: 2
+              value: "2"
           command:
             - /kube-scheduler
             - --config=/etc/kubernetes/scheduler/custom-scheduler-config.yaml
